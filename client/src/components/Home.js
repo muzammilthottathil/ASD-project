@@ -51,7 +51,7 @@ export default function Home() {
                         </Button>
                     </Col>
                     <div className="col-5">
-                        <img src={DoctorHero} height="800" alt="Doctor Hero" />
+                        <img src={DoctorHero} height="800" width="600" alt="Doctor Hero" />
                     </div>
                 </div>
             </div>
