@@ -24,7 +24,7 @@ export default function Home() {
                                 fontSize: '100px'
                             }}
                         >
-                            FinD My Doctor
+                            FindMyDoctor
                         </h1>
                         <p
                             style={{
@@ -33,14 +33,7 @@ export default function Home() {
                                 marginTop: '20px'
                             }}
                         >
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Aliquam quia vitae suscipit quaerat. Ad a
-                            voluptates amet beatae quidem. Quibusdam repellendus
-                            molestiae non perferendis aperiam vitae explicabo,
-                            quidem cumque aspernatur. Quibusdam aliquam
-                            perferendis nemo architecto optio dolorem, facilis
-                            labore rem tempora, fugiat laudantium atque nesciunt
-                            placeat dolorum nulla a velit!
+                            The go-to app to find your doctor wherever you are, whenever you want. Get well soon!
                         </p>
                         <Button
                             variant="secondary"
