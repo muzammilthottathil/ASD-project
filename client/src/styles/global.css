@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #201818;
+    color: #fff;
+    transition: all ease 500ms;
+}

@@ -1,0 +1,47 @@
+.modalMap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    min-height: 70vh;
+    min-width: 60vw;
+    border-radius: 30px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mapDiv {
+    /* background-color: rgb(187, 52, 52); */
+    flex-grow: 1;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.span {
+    color: black;
+    margin-bottom: 20px;
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modalMapClosed {
+    position: absolute;
+    top: -100%;
+    opacity: 0;
+    pointer-events: none;
+    left: 50%;
+    background-color: #fff;
+    min-height: 70vh;
+    min-width: 60vw;
+    border-radius: 30px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+}
