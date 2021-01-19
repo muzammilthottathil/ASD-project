@@ -1,18 +1,34 @@
 import doctorImage from '../Assets/doctorImage.png'
 import hospitalImage from '../Assets/hospitalImage.png'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import '../styles/Home.css'
+import { useData } from './Context'
+import { useEffect } from 'react'
 
-export default function SimpleCard({ type, name, details }) {
+export default function SimpleCard({ type, name, details, id }) {
     const { specialization, contact } = details
+    const history = useHistory()
+
+    const { setCurrentDoctor, setCurrentHospital } = useData()
+
+    function setClick() {
+        type === 'doctor'
+            ? setCurrentDoctor(() => ({
+                  doc_name: name,
+                  doc_spec: specialization,
+                  doc_id: id
+              }))
+            : setCurrentHospital(() => ({
+                  hos_id: id
+              }))
+        type === 'doctor'
+            ? history.push('/doctor-details')
+            : history.push('/hospital-details')
+    }
+
     return (
-        <Link
-            to={type === 'doctor' ? '/doctor-details' : '/hospital-details'}
-            style={{
-                textDecoration: 'none'
-            }}
-        >
+        <div onClick={setClick}>
             <div
                 style={{
                     border: '2px solid #FFFFFF',
@@ -47,6 +63,6 @@ export default function SimpleCard({ type, name, details }) {
                     </div>
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }

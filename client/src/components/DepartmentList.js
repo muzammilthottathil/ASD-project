@@ -1,34 +1,34 @@
 import SimpleCard from './SimpleCard'
 
-export default function DepartmentList() {
+export default function DepartmentList({ data }) {
     const departments = [
         {
-            deptName: 'Department-1',
+            deptName: 'General Medicine',
             docDetails: [
                 {
-                    name: 'Doctor Name Here',
-                    specialization: 'MBBS,MD,PHD,...'
+                    name: 'Dr. Ramachandran Nair',
+                    specialization: 'General Medicine,Neurosurgery'
                 },
                 {
-                    name: 'Doctor Name Here',
-                    specialization: 'MBBS,MD,PHD,...'
+                    name: 'Dr.Niyasudheen KK',
+                    specialization: 'General Medicine,Medical Gastroenterology'
                 },
                 {
-                    name: 'Doctor Name Here',
-                    specialization: 'MBBS,MD,PHD,...'
+                    name: 'Dr. Farhana Sakkeer',
+                    specialization: 'General Medicine,Anesthesiology'
                 }
             ]
         },
         {
-            deptName: 'Department-2',
+            deptName: 'Pediatrics',
             docDetails: [
                 {
-                    name: 'Doctor Name Here',
-                    specialization: 'MBBS,MD,PHD,...'
+                    name: 'Dr Althaf Ashraf',
+                    specialization: 'Ophthalmology,Pediatrics'
                 },
                 {
-                    name: 'Doctor Name Here',
-                    specialization: 'MBBS,MD,PHD,...'
+                    name: 'Dr. Seema Vineeth',
+                    specialization: 'Pediatrics,Neurosurgery'
                 }
             ]
         }

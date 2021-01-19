@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
 
-export default function MapContainer() {
+export default function MapContainer2() {
     const [viewport, setViewport] = useState({
         latitude: 10.8505159,
         longitude: 76.2710833,
         zoom: 10,
-        width: '1100px',
-        height: '554px'
+        width: '1245px',
+        height: '756px'
     })
     return (
         <div>

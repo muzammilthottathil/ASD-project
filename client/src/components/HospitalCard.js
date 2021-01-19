@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import hospitalImage from '../Assets/hospitalImage.png'
+import { useData } from './Context'
 
 export default function HospitalCard({ id, name, contact, time }) {
+    const history = useHistory()
+
+    const { setCurrentHospital } = useData()
+
+    function changeLoc() {
+        setCurrentHospital(() => ({
+            hos_id: id
+        }))
+        history.push('/hospital-details/map')
+    }
+
     return (
         <div
             style={{
@@ -13,20 +25,20 @@ export default function HospitalCard({ id, name, contact, time }) {
             <div className="d-flex p-4">
                 <div className="d-flex flex-column">
                     <img src={hospitalImage} alt="hospitalImage" height="150" />
-                    <Link
-                        to="/hospital-details/map"
+                    <div
+                        onClick={changeLoc}
                         style={{
-                            textDecoration: 'none',
                             color: '#201818',
                             textAlign: 'center',
                             backgroundColor: '#fff',
                             padding: '10px 20px',
                             borderRadius: '100px',
-                            marginTop: '20px'
+                            marginTop: '20px',
+                            cursor: 'pointer'
                         }}
                     >
                         Get Location
-                    </Link>
+                    </div>
                 </div>
 
                 <div className="ml-4">

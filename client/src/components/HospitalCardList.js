@@ -1,104 +1,24 @@
 import { Row } from 'react-bootstrap'
 import SimpleCard from './SimpleCard'
 
-export default function HospitalCardList() {
+export default function HospitalCardList({ details }) {
+    console.log(details)
     return (
         <div className="mt-5">
             <Row>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-            </Row>
-            <Row>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-            </Row>
-            <Row>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
-                <div className="col-4">
-                    <SimpleCard
-                        type={'Hospital'}
-                        name={'Hospital Name Here'}
-                        details={{
-                            specialization: '',
-                            contact: '+91 9876543210'
-                        }}
-                    />
-                </div>
+                {details.map((value, index) => (
+                    <div className="col-4" key={index}>
+                        <SimpleCard
+                            type={'Hospital'}
+                            name={value.hos_name}
+                            details={{
+                                specialization: '',
+                                contact: value.hos_contact
+                            }}
+                            id={value.hos_id}
+                        />
+                    </div>
+                ))}
             </Row>
         </div>
     )

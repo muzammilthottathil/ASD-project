@@ -1,0 +1,22 @@
+export const service = [
+    'X-RAY',
+    'MRI Scan',
+    'CT Scan',
+    'PET Scan',
+    'ECG',
+    'Mammogram',
+    'Colour Doppler',
+    'Anomaly Scan',
+    'Dialysis',
+    'Anomaly Scan',
+    'Neuro & Sleep Lab',
+    'Executive Health Check - up',
+    'Cardio Diabetic Checkup',
+    'Diet Counseling',
+    'Physiotherapy',
+    'Pathology',
+    'Cardiac Wellness Center',
+    'Epilepsy Clinic',
+    'Headache Clinic',
+    'Paediatric Neurology Clinic'
+]
