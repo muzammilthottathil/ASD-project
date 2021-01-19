@@ -7,26 +7,26 @@ import { useEffect, useState } from 'react'
 export default function DoctorDetails() {
     const [infoArray, setInfoArray] = useState([])
 
-    const { currentDoctor, doctorListDB } = useData()
+    const { currentDoctor, doctorData } = useData()
 
-    function makeList() {
-        let info = []
-        doctorListDB.map((value, index) => {
-            if (value.doc_id === currentDoctor.doc_id) {
-                info.push({
-                    hos_name: value.hos_name,
-                    hos_id: value.hos_id,
-                    hos_contact: value.hos_contact,
-                    time: value.time.split(',')
-                })
-            }
-        })
-        return info
-    }
+    // function makeList() {
+    //     let info = []
+    //     hospitalData.map((value, index) => {
+    //         if (value.doc_id === currentDoctor.doc_id) {
+    //             info.push({
+    //                 hos_name: value.hos_name,
+    //                 hos_id: value.hos_id,
+    //                 hos_contact: value.hos_contact,
+    //                 time: value.time.split(',')
+    //             })
+    //         }
+    //     })
+    //     return info
+    // }
 
     useEffect(() => {
-        setInfoArray(() => makeList())
-    }, [currentDoctor])
+        // setInfoArray(() => makeList())
+    }, [currentDoctor, doctorData])
     return (
         <div
             className="p-5 m-auto"
@@ -57,16 +57,24 @@ export default function DoctorDetails() {
                 >
                     <div className="p-3">
                         <div className="row">
-                            {infoArray.map((info, index) => (
-                                <div className="col-6" key={index}>
-                                    <HospitalCard
-                                        name={info.hos_name}
-                                        contact={info.hos_contact}
-                                        time={info.time}
-                                        id={info.hos_id}
-                                    />
-                                </div>
-                            ))}
+                            {Object.keys(doctorData).map((docID, index) => {
+                                if (Number(docID) === currentDoctor.doc_id) {
+                                    return doctorData[docID].map(
+                                        (hosInfo, index) => (
+                                            <div className="col-6" key={index}>
+                                                <HospitalCard
+                                                    name={hosInfo.hos_name}
+                                                    contact={
+                                                        hosInfo.hos_contact
+                                                    }
+                                                    time={hosInfo.time}
+                                                    id={hosInfo.hos_id}
+                                                />
+                                            </div>
+                                        )
+                                    )
+                                }
+                            })}
                         </div>
                     </div>
                 </div>

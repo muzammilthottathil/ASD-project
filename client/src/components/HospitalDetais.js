@@ -8,36 +8,26 @@ import { useData } from './Context'
 import { docSpec } from './docSpec'
 
 export default function HospitalDetais() {
-    const [infoHosArray, setInfoHosArray] = useState([])
-    const [infoDep, setInfoDep] = useState([])
-
-    const { currentHospital, hosRelationDB } = useData()
-
-    const details = {
-        name: 'Hospital Name Here',
-        contact: '+91 9876543210',
-        address: 'ABCD colony, Tirur'
-    }
-
-    function findHosData() {
-        let info = []
-        hosRelationDB.map((value, index) => {
-            if (value.hos_id === currentHospital.hos_id) {
-                info.push({
-                    hos_name: value.hos_name,
-                    hos_id: value.hos_id,
-                    hos_contact: value.hos_contact
-                })
-            }
-        })
-        return info
-    }
-
+    const [details, setDetails] = useState({})
     const [depTabStatus, setDepTabStatus] = useState(false)
 
+    const { currentHospital, hospitalData } = useData()
+
+    function getDetails() {
+        hospitalData.map((val) => {
+            if (val.hos_id === currentHospital.hos_id) {
+                setDetails(() => ({
+                    name: val.hos_name,
+                    contact: val.hos_contact,
+                    address: val.hos_address
+                }))
+            }
+        })
+    }
+
     useEffect(() => {
-        setInfoHosArray(() => findHosData())
-    }, [currentHospital])
+        getDetails()
+    }, [currentHospital, hospitalData])
 
     return (
         <div
@@ -50,14 +40,14 @@ export default function HospitalDetais() {
             <div className="row ">
                 <div className="col-3">
                     <img src={hospitalImage} alt="hospitalImage" />
-                    <h3 className="mt-5">{infoHosArray.hos_name}</h3>
+                    <h3 className="mt-5">{details.name}</h3>
                     <p
                         style={{
                             fontSize: '20px',
                             color: '#fffa'
                         }}
                     >
-                        Booking info : {infoHosArray.hos_contact}
+                        Booking info : {details.contact}
                     </p>
                     <p
                         style={{
@@ -65,7 +55,7 @@ export default function HospitalDetais() {
                             color: '#fff'
                         }}
                     >
-                        {infoHosArray.hos_address}
+                        {details.address}
                     </p>
                     <Link
                         to="/hospital-details/map"
@@ -132,11 +122,7 @@ export default function HospitalDetais() {
                             padding: '30px 40px'
                         }}
                     >
-                        {depTabStatus ? (
-                            <DepartmentList data={infoDep} />
-                        ) : (
-                            <ServiceList />
-                        )}
+                        {depTabStatus ? <DepartmentList /> : <ServiceList />}
                     </div>
                 </div>
             </div>

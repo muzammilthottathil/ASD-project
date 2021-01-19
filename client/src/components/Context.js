@@ -16,6 +16,10 @@ export function DataProvider({ children }) {
     const [currentHospital, setCurrentHospital] = useState(null)
     const [mapHospital, setMapHospital] = useState(null)
 
+    const [doctorData, setDoctorData] = useState([])
+    const [hospitalData, setHospitalData] = useState([])
+    const [sortedHospitalData, setSortedHospitalData] = useState([])
+
     const latLang = [11.026951425013214, 76.09385981711324]
 
     const value = {
@@ -35,7 +39,14 @@ export function DataProvider({ children }) {
         mapHospital,
         setMapHospital,
         hosRelationDB,
-        setHosRelationDB
+        setHosRelationDB,
+
+        doctorData,
+        setDoctorData,
+        hospitalData,
+        setHospitalData,
+        sortedHospitalData,
+        setSortedHospitalData
     }
     return <DataContext.Provider value={value}>{children}</DataContext.Provider>
 }

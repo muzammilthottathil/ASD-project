@@ -1,8 +1,17 @@
+import { useEffect, useState } from 'react'
 import { Row } from 'react-bootstrap'
 import SimpleCard from './SimpleCard'
+import { useData } from './Context'
 
-export default function HospitalCardList({ details }) {
-    console.log(details)
+export default function HospitalCardList() {
+    const [details, setDetails] = useState([])
+    const { sortedHospitalData } = useData()
+    function getDetails() {
+        setDetails(() => sortedHospitalData)
+    }
+    useEffect(() => {
+        getDetails()
+    }, [sortedHospitalData])
     return (
         <div className="mt-5">
             <Row>

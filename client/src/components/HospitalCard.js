@@ -13,7 +13,7 @@ export default function HospitalCard({ id, name, contact, time }) {
         }))
         history.push('/hospital-details/map')
     }
-
+    console.log('hello')
     return (
         <div
             style={{

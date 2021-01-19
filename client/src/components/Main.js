@@ -22,7 +22,10 @@ export default function Main() {
         setDoctorListDB,
         nearestDoctorListDB,
         setNearestDoctorListDB,
-        setHosRelationDB
+        setHosRelationDB,
+
+        hospitalData,
+        setSortedHospitalData
     } = useData()
 
     function GetSortOrder(prop) {
@@ -36,9 +39,9 @@ export default function Main() {
         }
     }
 
-    function findingNearestHos() {
+    function findingNearestHospital() {
         let hosWithDist = []
-        hospitalListDB.map((value, index) => {
+        hospitalData.map((value) => {
             hosWithDist.push({
                 ...value,
                 distance: distanceCalculator(
@@ -51,46 +54,12 @@ export default function Main() {
         })
         return hosWithDist
     }
-    function findingNearestDoc() {
-        let docWithDist = []
-        doctorListDB.map((value, index) => {
-            docWithDist.push({
-                doc_id: value.doc_id,
-                doc_spec: value.doc_spec,
-                doc_name: value.doc_name,
-                distance: distanceCalculator(
-                    latLang[0],
-                    latLang[1],
-                    Number(value.hos_latitude),
-                    Number(value.hos_longitude)
-                )
-            })
-        })
-        return docWithDist
-    }
 
     useEffect(() => {
-        Axios.get('http://localhost:4000/test').then((response) => {
-            setHospitalListDB(() => response.data)
-        })
-        Axios.get('http://localhost:4000/doctors/relation').then((response) => {
-            console.log(response.data)
-            setDoctorListDB(() => response.data)
-        })
-        Axios.get('http://localhost:4000/hospital/relation').then(
-            (response) => {
-                setHosRelationDB(() => response.data)
-            }
+        setSortedHospitalData(() =>
+            findingNearestHospital().sort(GetSortOrder('distance'))
         )
-    }, [])
-    useEffect(() => {
-        setNearestHospitalListDB(() =>
-            findingNearestHos().sort(GetSortOrder('distance'))
-        )
-        setNearestDoctorListDB(() =>
-            findingNearestDoc().sort(GetSortOrder('distance'))
-        )
-    }, [])
+    }, [hospitalData])
 
     return (
         <div>
@@ -115,9 +84,9 @@ export default function Main() {
                 <h3>Nearest Matches Found</h3>
                 <hr color="#fff" />
                 {activeFilter === 'Doctor' ? (
-                    <DoctorCardList details={nearestDoctorListDB} />
+                    <DoctorCardList />
                 ) : (
-                    <HospitalCardList details={nearestHospitalListDB} />
+                    <HospitalCardList />
                 )}
             </div>
         </div>
