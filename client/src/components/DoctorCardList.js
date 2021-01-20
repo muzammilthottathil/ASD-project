@@ -9,17 +9,24 @@ export default function DoctorCardList() {
     const { sortedHospitalData, searchValue, specificationValue } = useData()
 
     function filter(detailData) {
-        console.log('helo')
-        // spec filter
         specificationValue === 'All'
-            ? setDetails(() => allData)
+            ? setDetails(() => detailData)
             : setDetails(() =>
                   detailData.filter((el) =>
                       el.specifications.includes(specificationValue)
                   )
               )
+    }
 
-        // search filter
+    function searchFilter() {
+        const search = searchValue.toUpperCase()
+        search === ''
+            ? filter([...new Set(allData)])
+            : filter(
+                  allData.filter(
+                      (el) => el.doc_name.toUpperCase().indexOf(search) > -1
+                  )
+              )
     }
 
     function getAllDoctors() {
@@ -35,6 +42,11 @@ export default function DoctorCardList() {
     useEffect(() => {
         getAllDoctors()
     }, [sortedHospitalData, specificationValue])
+
+    useEffect(() => {
+        searchFilter()
+    }, [searchValue])
+
     console.log(details)
     return (
         <div className="mt-5">

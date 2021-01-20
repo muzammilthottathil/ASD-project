@@ -7,23 +7,33 @@ export default function HospitalCardList() {
     const [details, setDetails] = useState([])
     const { sortedHospitalData, searchValue, serviceValue } = useData()
 
-    function filter() {
-        const detailData = [...sortedHospitalData]
-        console.log('helo')
-        // spec filter
+    function filter(detailData) {
         serviceValue === 'All'
-            ? setDetails(() => [...sortedHospitalData])
+            ? setDetails(() => detailData)
             : setDetails(() =>
                   detailData.filter((el) => el.services.includes(serviceValue))
               )
+    }
 
-        // search filter
+    function searchFilter() {
+        const search = searchValue.toUpperCase()
+        search === ''
+            ? filter([...sortedHospitalData])
+            : filter(
+                  [...sortedHospitalData].filter(
+                      (el) => el.hos_name.toUpperCase().indexOf(search) > -1
+                  )
+              )
     }
 
     useEffect(() => {
-        filter()
-        // getDetails()
+        filter([...sortedHospitalData])
     }, [sortedHospitalData, serviceValue])
+
+    useEffect(() => {
+        searchFilter()
+    }, [searchValue])
+
     return (
         <div className="mt-5">
             <Row>
