@@ -5,12 +5,18 @@ import { useData } from './Context'
 export default function HospitalCard({ id, name, contact, time }) {
     const history = useHistory()
 
-    const { setCurrentHospital } = useData()
+    const { setCurrentHospital, hospitalData, setMapHospital } = useData()
 
     function changeLoc() {
         setCurrentHospital(() => ({
             hos_id: id
         }))
+
+        hospitalData.map((val) => {
+            if (val.hos_id === id) {
+                setMapHospital(() => val)
+            }
+        })
         history.push('/hospital-details/map')
     }
     console.log('hello')

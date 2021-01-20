@@ -1,6 +1,6 @@
 import Header2 from './Header2'
 import hospitalImage from '../Assets/hospitalImage.png'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ServiceList from './ServiceList'
 import DepartmentList from './DepartmentList'
 import { useEffect, useState } from 'react'
@@ -11,7 +11,9 @@ export default function HospitalDetais() {
     const [details, setDetails] = useState({})
     const [depTabStatus, setDepTabStatus] = useState(false)
 
-    const { currentHospital, hospitalData } = useData()
+    const history = useHistory()
+
+    const { currentHospital, hospitalData, setMapHospital } = useData()
 
     function getDetails() {
         hospitalData.map((val) => {
@@ -23,6 +25,16 @@ export default function HospitalDetais() {
                 }))
             }
         })
+    }
+
+    function redirectToMaps() {
+        hospitalData.map((val) => {
+            if (val.hos_id === currentHospital.hos_id) {
+                setMapHospital(() => val)
+            }
+        })
+
+        history.push('/hospital-details/map')
     }
 
     useEffect(() => {
@@ -57,10 +69,10 @@ export default function HospitalDetais() {
                     >
                         {details.address}
                     </p>
-                    <Link
-                        to="/hospital-details/map"
+                    <div
+                        onClick={redirectToMaps}
                         style={{
-                            textDecoration: 'none',
+                            cursor: 'pointer',
                             color: '#201818',
                             textAlign: 'center',
                             backgroundColor: '#fff',
@@ -72,7 +84,7 @@ export default function HospitalDetais() {
                         }}
                     >
                         Get Location
-                    </Link>
+                    </div>
                 </div>
                 <div className="col-9 ">
                     <div className="row">

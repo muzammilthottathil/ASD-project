@@ -13,8 +13,14 @@ export function DataProvider({ children }) {
     const [nearestDoctorListDB, setNearestDoctorListDB] = useState([])
     const [hosRelationDB, setHosRelationDB] = useState([])
     const [currentDoctor, setCurrentDoctor] = useState(null)
+
     const [currentHospital, setCurrentHospital] = useState(null)
-    const [mapHospital, setMapHospital] = useState(null)
+    const [mapHospital, setMapHospital] = useState({})
+
+    const [activeFilter, setActiveFilter] = useState('Doctor')
+    const [searchValue, setSearchValue] = useState('')
+    const [serviceValue, setServiceValue] = useState('All')
+    const [specificationValue, setSpecificationValue] = useState('All')
 
     const [doctorData, setDoctorData] = useState([])
     const [hospitalData, setHospitalData] = useState([])
@@ -36,11 +42,20 @@ export function DataProvider({ children }) {
         setCurrentDoctor,
         currentHospital,
         setCurrentHospital,
-        mapHospital,
-        setMapHospital,
         hosRelationDB,
         setHosRelationDB,
 
+        activeFilter,
+        setActiveFilter,
+        searchValue,
+        setSearchValue,
+        serviceValue,
+        setServiceValue,
+        specificationValue,
+        setSpecificationValue,
+
+        mapHospital,
+        setMapHospital,
         doctorData,
         setDoctorData,
         hospitalData,

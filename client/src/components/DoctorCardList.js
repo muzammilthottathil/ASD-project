@@ -5,7 +5,23 @@ import SimpleCard from './SimpleCard'
 
 export default function DoctorCardList() {
     const [details, setDetails] = useState([])
-    const { sortedHospitalData } = useData()
+    const [allData, setAllData] = useState([])
+    const { sortedHospitalData, searchValue, specificationValue } = useData()
+
+    function filter(detailData) {
+        console.log('helo')
+        // spec filter
+        specificationValue === 'All'
+            ? setDetails(() => allData)
+            : setDetails(() =>
+                  detailData.filter((el) =>
+                      el.specifications.includes(specificationValue)
+                  )
+              )
+
+        // search filter
+    }
+
     function getAllDoctors() {
         let arr = []
         sortedHospitalData.map((value) => {
@@ -13,11 +29,12 @@ export default function DoctorCardList() {
                 arr.push(doc)
             })
         })
-        setDetails(() => [...new Set(arr)])
+        setAllData(() => [...new Set(arr)])
+        filter([...new Set(arr)])
     }
     useEffect(() => {
         getAllDoctors()
-    }, [sortedHospitalData])
+    }, [sortedHospitalData, specificationValue])
     console.log(details)
     return (
         <div className="mt-5">

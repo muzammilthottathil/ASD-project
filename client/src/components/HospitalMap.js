@@ -5,31 +5,25 @@ import { useData } from './Context'
 import { useEffect } from 'react'
 
 export default function HospitalMap() {
-    const {
-        currentHospital,
-        hospitalListDB,
-        mapHospital,
-        setMapHospital
-    } = useData()
+    const { mapHospital } = useData()
 
-    function findCurrent() {
-        let details = {
-            hos_id: currentHospital.hos_id
-        }
-        hospitalListDB.map((info, value) => {
-            if (info.hos_id === currentHospital.hos_id) {
-                details.hos_address = info.hos_address
-                details.hos_contact = info.hos_contact
-                details.hos_name = info.hos_name
-            }
-        })
-        return details
-    }
-    console.log(mapHospital)
+    // function findCurrent() {
+    //     let details = {
+    //         hos_id: currentHospital.hos_id
+    //     }
+    //     hospitalListDB.map((info, value) => {
+    //         if (info.hos_id === currentHospital.hos_id) {
+    //             details.hos_address = info.hos_address
+    //             details.hos_contact = info.hos_contact
+    //             details.hos_name = info.hos_name
+    //         }
+    //     })
+    //     return details
+    // }
+    // console.log(mapHospital)
     useEffect(() => {
-        setMapHospital(() => findCurrent())
-    }, [])
-    console.log(mapHospital)
+        // setMapHospital(() => findCurrent())
+    }, [mapHospital])
     return (
         <div
             className="p-5 m-auto"

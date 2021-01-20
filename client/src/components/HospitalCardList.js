@@ -5,13 +5,25 @@ import { useData } from './Context'
 
 export default function HospitalCardList() {
     const [details, setDetails] = useState([])
-    const { sortedHospitalData } = useData()
-    function getDetails() {
-        setDetails(() => sortedHospitalData)
+    const { sortedHospitalData, searchValue, serviceValue } = useData()
+
+    function filter() {
+        const detailData = [...sortedHospitalData]
+        console.log('helo')
+        // spec filter
+        serviceValue === 'All'
+            ? setDetails(() => [...sortedHospitalData])
+            : setDetails(() =>
+                  detailData.filter((el) => el.services.includes(serviceValue))
+              )
+
+        // search filter
     }
+
     useEffect(() => {
-        getDetails()
-    }, [sortedHospitalData])
+        filter()
+        // getDetails()
+    }, [sortedHospitalData, serviceValue])
     return (
         <div className="mt-5">
             <Row>

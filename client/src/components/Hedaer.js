@@ -1,7 +1,9 @@
 import '../styles/Home.css'
 import line3 from '../Assets/line3.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { service } from './service'
+import { docSpec } from './docSpec'
 
 export default function Hedaer({ variables }) {
     const {
@@ -22,51 +24,22 @@ export default function Hedaer({ variables }) {
         setSearchValue('')
     }
 
-    console.log(activeFilter, serviceValue, specificationValue, searchValue)
+    console.log(
+        'Hedaer : ',
+        activeFilter,
+        serviceValue,
+        specificationValue,
+        searchValue
+    )
 
-    const serviceAvailable = [
-        {
-            name: 'X-RAY'
-        },
-        {
-            name: 'SCANNING'
-        },
-        {
-            name: 'OPERATION'
-        },
-        {
-            name: 'LABORATORY'
-        },
-        {
-            name: 'LABOUR ROOM'
-        }
-    ]
-    const Departments = [
-        {
-            name: 'Cardiology (Heart Care)'
-        },
-        {
-            name: 'Oncology (Cancer Care)'
-        },
-        {
-            name: 'Neurology'
-        },
-        {
-            name: 'Urology'
-        },
-        {
-            name: 'Surgical Gastroenterology'
-        },
-        {
-            name: 'Medical Gastroenterology'
-        },
-        {
-            name: 'Obstetrics and Gynaecology'
-        },
-        {
-            name: 'Bone Marrow Transplant'
-        }
-    ]
+    // useEffect(() => {
+    //     setFilterValues(() => ({
+    //         activeFilter: activeFilter,
+    //         serviceValue: serviceValue,
+    //         specificationValue: specificationValue,
+    //         searchValue: searchValue
+    //     }))
+    // }, [activeFilter, serviceValue, specificationValue, searchValue])
 
     return (
         <div
@@ -145,13 +118,8 @@ export default function Hedaer({ variables }) {
                                     <option value="All" defaultValue>
                                         All
                                     </option>
-                                    {Departments.map((department, key) => (
-                                        <option
-                                            key={key}
-                                            value={department.name}
-                                        >
-                                            {department.name}
-                                        </option>
+                                    {docSpec.map((spec) => (
+                                        <option value={spec}>{spec}</option>
                                     ))}
                                 </Form.Control>
                             </>
@@ -173,10 +141,8 @@ export default function Hedaer({ variables }) {
                                     <option value="All" defaultValue>
                                         All
                                     </option>
-                                    {serviceAvailable.map((service, key) => (
-                                        <option key={key} value={service.name}>
-                                            {service.name}
-                                        </option>
+                                    {service.map((ser) => (
+                                        <option value={ser}>{ser}</option>
                                     ))}
                                 </Form.Control>
                             </>

@@ -7,25 +7,19 @@ import { useData } from './Context'
 import { distanceCalculator } from './distanceCalculator'
 
 export default function Main() {
-    const [activeFilter, setActiveFilter] = useState('Doctor')
-    const [searchValue, setSearchValue] = useState('')
-    const [serviceValue, setServiceValue] = useState('All')
-    const [specificationValue, setSpecificationValue] = useState('All')
-
     const {
         latLang,
-        hospitalListDB,
-        setHospitalListDB,
-        nearestHospitalListDB,
-        setNearestHospitalListDB,
-        doctorListDB,
-        setDoctorListDB,
-        nearestDoctorListDB,
-        setNearestDoctorListDB,
-        setHosRelationDB,
-
         hospitalData,
-        setSortedHospitalData
+        setSortedHospitalData,
+
+        activeFilter,
+        setActiveFilter,
+        searchValue,
+        setSearchValue,
+        serviceValue,
+        setServiceValue,
+        specificationValue,
+        setSpecificationValue
     } = useData()
 
     function GetSortOrder(prop) {
